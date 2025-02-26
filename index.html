@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h2 class="header-title">I <i class="fa-solid fa-heart"></i> HTML&CSS</h2>
+        <nav>
+            <a href="https://www.auupa.com/inicio/">Home</a>
+            <a href="#about">About</a>
+            <a href="#grid">Grid</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!--Zheni section-->
+    <section id="about" class="hero">
+        <h2>¿Crees que Zhenishai está lista para esta práctica? (Pista: la respuesta correcta es "Sí")</h2>
+        <h3>A ver si puedes pulsar "No"...</h3>
+        <div class="buttons">
+            <button class="btn btn-si" onclick="thankYou()">Sí</button>
+            <button class="btn btn-no" onmouseover="moveButton()">No</button>
+        </div>
+        <p id="thanks-message">¡Gracias por tu respuesta!
+            <br />
+            <br />
+            <strong>Zhenishai te ayudará con:</strong>
+        </p>
+
+    </section>
+
+    <section class="card-container">
+        <div class="card">
+            <i class="fa fa-laptop-code fa-3x"></i>
+            <h3>Web Development</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="card">
+            <i class="fa fa-paint-brush fa-3x"></i>
+            <h3>UI/UX Design</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="card">
+            <i class="fa fa-mobile-alt fa-3x"></i>
+            <h3>App Development</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </section>
+    <br />
+    <br />
+    <!--Grid section-->
+    <h2 id="grid">METODOLOGÍA AUUPA</h2>
+
+    <section class="grid-container">
+        <div class="grid-item item-1"><i class="fa fa-lightbulb fa-3x"></i>
+            <h3>Toma de contactos</h3>
+        </div>
+        <div class="grid-item item-2"><i class="fa fa-chart-line fa-3x"></i>
+            <h3>Propuesta</h3>
+        </div>
+        <div class="grid-item item-3"><i class="fa fa-users fa-3x"></i>
+            <h3>Cierra de propuesta</h3>
+        </div>
+        <div class="grid-item item-4"><i class="fa fa-rocket fa-3x"></i>
+            <h3>Propuesta grafica</h3>
+        </div>
+        <div class="grid-item item-5"><i class="fa fa-cogs fa-3x"></i>
+            <h3>Inicio desarrollo</h3>
+        </div>
+        <div class="grid-item item-6"><i class="fa fa-shield-alt fa-3x"></i>
+            <h3>Prototipo</h3>
+        </div>
+        <div class="grid-item item-7"><i class="fa fa-code fa-3x"></i>
+            <h3>Finalización</h3>
+        </div>
+        <div class="grid-item item-8"><i class="fa fa-globe fa-3x"></i>
+            <h3>Acompañamiento</h3>
+        </div>
+    </section>
+    <br />
+    <br />
+    <!--Form section-->
+    <h2 id="contact">Te invitamos a un café, <br />
+        ven a conocernos.</h2>
+
+    <section class="form-container">
+        <h2>¡Contáctanos!</h2>
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Tu email" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Género</label>
+                <select id="gender" name="gender">
+                    <option value="">Selecciona una opción</option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                    <option value="other">Otro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tu mensaje"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Acepto los términos y condiciones
+                    <input type="checkbox" id="terms" required>
+                </label>
+            </div>
+            <button type="submit" class="btn-submit">Enviar!</button>
+        </form>
+    </section>
+
+    <footer>&copy; All rights reserved.</footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        //Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfX6x-ozi4UMiTCKgTFkzxdwaR0eb9R9E",
+            authDomain: "pruebaauupa.firebaseapp.com",
+            projectId: "pruebaauupa",
+            storageBucket: "pruebaauupa.firebasestorage.app",
+            messagingSenderId: "1006637539560",
+            appId: "1:1006637539560:web:3e3076cadf21a34d19695d",
+            measurementId: "G-8VGNQPN05D"
+        };
+
+        //Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        //Form handler
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const gender = document.getElementById("gender").value;
+            const message = document.getElementById("message").value;
+            const termsAccepted = document.getElementById("terms").checked;
+
+            if (!termsAccepted) {
+                alert("Debes aceptar los términos y condiciones.");
+                return;
+            }
+
+            try {
+                //Add message to Firestore
+                await addDoc(collection(db, "contacts"), {
+                    name: name,
+                    email: email,
+                    gender: gender,
+                    message: message,
+                    timestamp: new Date()
+                });
+
+                //Alert
+                alert("¡Mensaje enviado exitosamente!");
+                form.reset();
+            } catch (error) {
+                console.error("Error al enviar el mensaje: ", error);
+                alert("Hubo un error al enviar el mensaje. Intenta nuevamente.");
+            }
+        });
+
+        // ThankYouFunction
+        window.thankYou = function () {
+            document.getElementById("thanks-message").style.display = "block";
+        }
+        window.moveButton = function () {
+            const button = document.querySelector(".btn-no");
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 200);
+
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        };
+    </script>
+</body>
+
+</html>
