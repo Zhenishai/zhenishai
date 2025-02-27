@@ -328,9 +328,14 @@ input[type="checkbox"]:focus {
     }
 
     .card-container {
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
-        padding: 20px;
+        padding: 10px;
+    }
+
+    .card {
+        width: 130px;
+
     }
 
     .form-container {
@@ -345,7 +350,7 @@ input[type="checkbox"]:focus {
 
     .grid-item {
         padding: 20px;
-        font-size: 14px;
+        font-size: 10px;
     }
 
     .item-1,
@@ -380,7 +385,7 @@ input[type="checkbox"]:focus {
     }
 
     .card {
-        width: 100%;
+        width: 85%;
     }
 
     .grid-container {
@@ -389,7 +394,7 @@ input[type="checkbox"]:focus {
     }
 
     .grid-item {
-        font-size: 14px;
+        font-size: 12px;
         padding: 15px;
     }
 
